@@ -8,7 +8,7 @@ if update_BS == 1
     H_Effective_T
     %H_Effective_B
 end
-
+snapshot = 1;
 %% Computing tables for the BdG Hamiltonian
 load('HT.mat')
 %load('HB.mat')
@@ -45,6 +45,7 @@ for iqx = 3 : q_size-2
 end
 VX_table = VX_table / (g1*(qx(2)-qx(1)));
 
+clear H0BDG
 
 DAq = qx*0+0.035; % seed value
 DBq = qx*0+0.015; % seed value
@@ -124,6 +125,14 @@ for iqx = 1:q_size
     Jxq_v2_m(iqx) = sum(sum(sum(fFD(energy).*JxD)));
     Jxq_v2_s(iqx) = sum(sum(sum(fFD(energy0).*Jx0)));
     disp([num2str(fix(1000*(iqx)/q_size)/10),'% finished'])
+    if snapshot == 1
+        if iqx == fix(length(qx)/2) + 1
+            save('snapshot_q=0.mat','Vec','Val','Vecn','Valn','Jx0','JxD','musk',"energy",'iqx')
+        elseif iqx == length(qx)
+            save('snapshot_q=01.mat','Vec','Val','Vecn','Valn','Jx0','JxD','musk',"energy",'iqx')
+        end
+
+    end
 
 end
 Jxq_v1 = Jxq_v1 * dkxdky; % in e*v0 units
