@@ -37,7 +37,7 @@ for id = 1 : 2
     elseif id == 2
         xi = 1;
     end
-    for iq = 1 : length(qx)
+    for iq = 1 : 1
         eig_disr = 0;
         band       = zeros (nbands, nbands, nx, ny);
         band_eff   = zeros (nbands, nbands, nx, ny);
@@ -97,22 +97,11 @@ for id = 1 : 2
         end
     end
 end
-id = 1;
-J_x       = zeros (nbands, nbands, nx, ny, q_size);
-for iq = 1 : length(qx)
-    for i = 3 : nx-2
-        for j = 1 : ny
-            J_x(:,:,i,j,iq) = -H_eff_T(:,:,i+2,j,iq,id)+8*H_eff_T(:,:,i+1,j,iq,id)...
-                            -8*H_eff_T(:,:,i-1,j,iq,id)+  H_eff_T(:,:,i-2,j,iq,id);
-        end
-    end
-end
-J_x = J_x/(12*(kx(2)-kx(1)));
 % figure
 % hold on
 % plot(kx, squeeze(real(energy_eff(1,1,:,fix(end/2)))),'b-')
 % plot(kx, squeeze(real(energy_eff(2,1,:,fix(end/2)))),'b-')
 % plot(kx, squeeze(real(energy_eff(1,2,end:-1:1,fix(end/2)))),'r-')
 % plot(kx, squeeze(real(energy_eff(2,2,end:-1:1,fix(end/2)))),'r-')
-save('HT.mat','H_eff_T','J_x')
+save('HT.mat','H_eff_T')
 %clear all

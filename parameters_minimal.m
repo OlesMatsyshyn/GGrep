@@ -44,10 +44,10 @@ eyc = -1i / sqrt(2);
 
 nx = 401; % pick a number that divides by 3 (sum devides by 3)
 ny = 401; % best when nx = ny
-kx = linspace(-1.,1.,nx);
+kx = linspace(-1.2,1.2,nx);
 ky = linspace(-1.1,1.1,ny);
 dkxdky = ( kx(2)-kx(1) ) * ( ky(2)-ky(1) )/(2*pi)^2;
-q_max  = 0.01;
+q_max  = 0.015;
 q_size = 41;
 qx = linspace(-q_max,q_max,q_size); 
 
